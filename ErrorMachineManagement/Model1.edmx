@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PAD_MCEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="padmc_currentstatus">
+          <Key>
+            <PropertyRef Name="mc_id" />
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="mc_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="device_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="error_status" Type="int" />
+          <Property Name="time_update" Type="datetime" />
+        </EntityType>
+        <EntityType Name="padmc_error">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mc_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="device_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="error_time" Type="datetime" Nullable="false" />
+          <Property Name="error_timereset" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="padmc_errordevice">
+          <Key>
+            <PropertyRef Name="device_name" />
+          </Key>
+          <Property Name="device_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="device_descrition" Type="nvarchar" MaxLength="100" />
+          <Property Name="device_errorname" Type="nvarchar" MaxLength="100" />
+          <Property Name="device_solution" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="padmc_errortotal">
+          <Key>
+            <PropertyRef Name="mc_id" />
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="mc_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="device_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="error_date" Type="date" />
+          <Property Name="error_count" Type="int" />
+          <Property Name="error_timeelapse" Type="int" />
+        </EntityType>
+        <EntityType Name="padmc_leader">
+          <Key>
+            <PropertyRef Name="leader_id" />
+          </Key>
+          <Property Name="leader_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="leader_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="leader_gen" Type="nvarchar" MaxLength="50" />
+          <Property Name="leader_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="leader_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="padmc_line">
+          <Key>
+            <PropertyRef Name="line_id" />
+          </Key>
+          <Property Name="line_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="line_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="line_number" Type="nvarchar" MaxLength="50" />
+          <Property Name="line_model" Type="nvarchar" MaxLength="50" />
+          <Property Name="line_process" Type="nvarchar" MaxLength="50" />
+          <Property Name="leader_id" Type="int" />
+          <Property Name="line_factory" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="padmc_machines">
+          <Key>
+            <PropertyRef Name="mc_id" />
+          </Key>
+          <Property Name="mc_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mc_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="line_id" Type="int" />
+          <Property Name="mc_ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="mc_process" Type="nvarchar" MaxLength="50" />
+          <Property Name="leader_id" Type="int" />
+          <Property Name="mc_plcname" Type="nvarchar" MaxLength="50" />
+          <Property Name="mc_devicekey" Type="nvarchar" MaxLength="50" />
+          <Property Name="mc_devicekey_status" Type="int" />
+        </EntityType>
+        <EntityContainer Name="PAD_MCEMModelStoreContainer">
+          <EntitySet Name="padmc_currentstatus" EntityType="Self.padmc_currentstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_error" EntityType="Self.padmc_error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_errordevice" EntityType="Self.padmc_errordevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_errortotal" EntityType="Self.padmc_errortotal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_leader" EntityType="Self.padmc_leader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_line" EntityType="Self.padmc_line" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="padmc_machines" EntityType="Self.padmc_machines" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PAD_MCEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="padmc_currentstatus">
+          <Key>
+            <PropertyRef Name="mc_id" />
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="mc_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="device_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="error_status" Type="Int32" />
+          <Property Name="time_update" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="padmc_error">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mc_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="device_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="error_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="error_timereset" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="padmc_errordevice">
+          <Key>
+            <PropertyRef Name="device_name" />
+          </Key>
+          <Property Name="device_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="device_descrition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="device_errorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="device_solution" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="padmc_errortotal">
+          <Key>
+            <PropertyRef Name="mc_id" />
+            <PropertyRef Name="device_id" />
+          </Key>
+          <Property Name="mc_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="device_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="error_date" Type="DateTime" Precision="0" />
+          <Property Name="error_count" Type="Int32" />
+          <Property Name="error_timeelapse" Type="Int32" />
+        </EntityType>
+        <EntityType Name="padmc_leader">
+          <Key>
+            <PropertyRef Name="leader_id" />
+          </Key>
+          <Property Name="leader_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="leader_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leader_gen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leader_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leader_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="padmc_line">
+          <Key>
+            <PropertyRef Name="line_id" />
+          </Key>
+          <Property Name="line_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="line_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="line_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="line_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="line_process" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leader_id" Type="Int32" />
+          <Property Name="line_factory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="padmc_machines">
+          <Key>
+            <PropertyRef Name="mc_id" />
+          </Key>
+          <Property Name="mc_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mc_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="line_id" Type="Int32" />
+          <Property Name="mc_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mc_process" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leader_id" Type="Int32" />
+          <Property Name="mc_plcname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mc_devicekey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mc_devicekey_status" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="PAD_MCEMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="padmc_currentstatus" EntityType="Self.padmc_currentstatus" />
+          <EntitySet Name="padmc_error" EntityType="Self.padmc_error" />
+          <EntitySet Name="padmc_errordevice" EntityType="Self.padmc_errordevice" />
+          <EntitySet Name="padmc_errortotal" EntityType="Self.padmc_errortotal" />
+          <EntitySet Name="padmc_leader" EntityType="Self.padmc_leader" />
+          <EntitySet Name="padmc_line" EntityType="Self.padmc_line" />
+          <EntitySet Name="padmc_machines" EntityType="Self.padmc_machines" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PAD_MCEMModelStoreContainer" CdmEntityContainer="PAD_MCEMEntities">
+          <EntitySetMapping Name="padmc_currentstatus">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_currentstatus">
+              <MappingFragment StoreEntitySet="padmc_currentstatus">
+                <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="error_status" ColumnName="error_status" />
+                <ScalarProperty Name="time_update" ColumnName="time_update" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_error">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_error">
+              <MappingFragment StoreEntitySet="padmc_error">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="error_time" ColumnName="error_time" />
+                <ScalarProperty Name="error_timereset" ColumnName="error_timereset" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_errordevice">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_errordevice">
+              <MappingFragment StoreEntitySet="padmc_errordevice">
+                <ScalarProperty Name="device_name" ColumnName="device_name" />
+                <ScalarProperty Name="device_descrition" ColumnName="device_descrition" />
+                <ScalarProperty Name="device_errorname" ColumnName="device_errorname" />
+                <ScalarProperty Name="device_solution" ColumnName="device_solution" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_errortotal">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_errortotal">
+              <MappingFragment StoreEntitySet="padmc_errortotal">
+                <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="error_date" ColumnName="error_date" />
+                <ScalarProperty Name="error_count" ColumnName="error_count" />
+                <ScalarProperty Name="error_timeelapse" ColumnName="error_timeelapse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_leader">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_leader">
+              <MappingFragment StoreEntitySet="padmc_leader">
+                <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+                <ScalarProperty Name="leader_name" ColumnName="leader_name" />
+                <ScalarProperty Name="leader_gen" ColumnName="leader_gen" />
+                <ScalarProperty Name="leader_phone" ColumnName="leader_phone" />
+                <ScalarProperty Name="leader_type" ColumnName="leader_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_line">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_line">
+              <MappingFragment StoreEntitySet="padmc_line">
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="line_name" ColumnName="line_name" />
+                <ScalarProperty Name="line_number" ColumnName="line_number" />
+                <ScalarProperty Name="line_model" ColumnName="line_model" />
+                <ScalarProperty Name="line_process" ColumnName="line_process" />
+                <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+                <ScalarProperty Name="line_factory" ColumnName="line_factory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="padmc_machines">
+            <EntityTypeMapping TypeName="PAD_MCEMModel.padmc_machines">
+              <MappingFragment StoreEntitySet="padmc_machines">
+                <ScalarProperty Name="mc_id" ColumnName="mc_id" />
+                <ScalarProperty Name="mc_name" ColumnName="mc_name" />
+                <ScalarProperty Name="line_id" ColumnName="line_id" />
+                <ScalarProperty Name="mc_ip" ColumnName="mc_ip" />
+                <ScalarProperty Name="mc_process" ColumnName="mc_process" />
+                <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+                <ScalarProperty Name="mc_plcname" ColumnName="mc_plcname" />
+                <ScalarProperty Name="mc_devicekey" ColumnName="mc_devicekey" />
+                <ScalarProperty Name="mc_devicekey_status" ColumnName="mc_devicekey_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
